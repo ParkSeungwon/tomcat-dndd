@@ -1,0 +1,81 @@
+<html>
+ <head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="bootstrap.css">
+  <link rel="stylesheet" href="bootstrap.theme.css">
+  <script src="bootstrap.min.js"></script>
+  <script src="jquery.min.js"></script>
+  <script>
+    function f() {
+		var json = {
+			id : email.value,
+			password : password.value,
+			group : msg.value
+		};
+		replace.innerHTML = 'login';
+		$.post("login.cgi", json, function(data, status) {
+			if(data != "Login failed") {
+				$(".input-group").hide();
+				var n1 = data.indexOf("\n", 0);
+				var n2 = data.indexOf("\n", n1+1);
+				var logid = data.substring(0, n1);
+				document.cookie = "id=" + logid;
+				document.cookie = "level=" + data.substring(n1+1,n2);
+				replace.innerHTML = data.substring(n2+1);
+				logged.innerHTML = logid + "님 반갑습니다.";
+			} else replace.innerHTML = data;
+		})				
+	}
+  </script>
+  <title>
+   토론과 민주적인 의사 결정
+  </title>
+ </head>
+ <body>
+  <div class="container">
+   <div class="row">
+    <div class="col-md-9">
+     <div class="jumbotron">
+      <h1>
+       토론과 민주적인 의사 결정
+      </h1>
+     </div>
+    </div>
+    <div class="col-md-3">
+     <p id="logged">
+     </p>
+     <div class="input-group">
+      <span class="input-group-addon">
+       Group
+      </span>
+      <input class="form-control" id="msg" name="msg" placeholder="Additional Info" type="text" />
+     </div>
+     <div class="input-group">
+      <span class="input-group-addon">
+       <i class="glyphicon glyphicon-user">
+       </i>
+      </span>
+      <input class="form-control" id="email" name="email" placeholder="Email" type="text" />
+     </div>
+     <div class="input-group">
+      <span class="input-group-addon">
+       <i class="glyphicon glyphicon-lock">
+       </i>
+      </span>
+      <input class="form-control" id="password" name="password" placeholder="Password" type="password" />
+      <div class="input-group-btn">
+       <button class="btn btn-default" onclick="f()">
+        <i class="glyphicon glyphicon-log-in">
+        </i>
+       </button>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <p id="replace">
+    </p>
+   </div>
+  </div>
+ </body>
+</html>
