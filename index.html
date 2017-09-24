@@ -16,12 +16,11 @@
 		$.post("login.cgi", json, function(data, status) {
 			if(data != "Login failed") {
 				$(".input-group").hide();
-				var n1 = data.indexOf("\n", 0);
-				var n2 = data.indexOf("\n", n1+1);
-				var logid = data.substring(0, n1);
-				document.cookie = "id=" + logid;
-				document.cookie = "level=" + data.substring(n1+1,n2);
-				replace.innerHTML = data.substring(n2+1);
+				var vs = data.split("\n");
+				document.cookie = "id=" + vs[0];
+				document.cookie = "level=" + vs[1];
+				int i;
+				for(i=2; i<vs.size(); i++) replace.innerHTML +=  vs[i] ;
 				logged.innerHTML = logid + "님 반갑습니다.";
 			} else replace.innerHTML = data;
 		})				
@@ -32,6 +31,11 @@
   </title>
  </head>
  <body>
+	<nav class="navbar navbar-inverse bg-primary">
+		<ul id="li" class="navbar-nav">
+			
+		</ul>
+	</nav>
   <div class="container">
    <div class="row">
     <div class="col-md-9">
