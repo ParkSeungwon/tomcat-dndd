@@ -21,6 +21,6 @@ int main()
 	if(login) {
 		cout << (*it)[3] <<'\n'<< (*it)[2] << '\n';
 		for(auto& a : sq.show_tables()) if(a!="Users" && a!="Vote" && a!="Follow") 
-			cout << "<a href='table.cgi?table=" + a +"'>" + a + "</a><br>\n";
+			cout << a << '\n';
 	} else cout << "Login failed";
 }
