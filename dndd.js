@@ -12,18 +12,18 @@ $(document).on('click', '.menu', function() {
 	$.get("table.cgi?table=" + table_ + "&group=" + group_, function(data, status) {
 		var vs = data.split("\n");
 		for(var i=0; i<vs.length-1; i+=2) {
-			replace.innerHTML += "<li class='list-group-item'><i>" + vs[i] + "</i>. " + vs[i+1] + "</li>";
+			replace.innerHTML += "<li class='list-group-item list-group-item-success'><i>" + vs[i] + "</i>. " + vs[i+1] + "</li>";
 		}
 	});
 });
 
-$(document).on('click', '.list-group-item', function() {
+$(document).on('click', '.list-group-item-success', function() {
 	book_ = parseInt(($(this).find("i").text()));
 	replace.innerHTML = '';
 	$.get("book.cgi?group=" + group_ + "&table=" + table_ + "&book=" + book_, function(data, status) {
 		var vs = data.split("\n");
 		for(var i=0; i<vs.length-1; i+=2) {
-			replace.innerHTML += "<li class='list-group-item'><i>" + vs[i] + "</i>. " + vs[i+1] + "</li>";
+			replace.innerHTML += "<li class='list-group-item list-group-item-secondary'><i>" + vs[i] + "</i>. " + vs[i+1] + "</li>";
 		}
 	});
 
