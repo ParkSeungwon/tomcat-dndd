@@ -1,16 +1,23 @@
 <html>
  <head>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="bootstrap.css">
-  <link rel="stylesheet" href="bootstrap.theme.css">
-  <script src="bootstrap.min.js"></script>
-<style type="text/css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <style type="text/css">
 .navbar-nav > li {
 	padding:15px;
 }
 </style>
-  <script src="jquery.min.js"></script>
-  <script>
+
+<script>
 	function g(tb) {
 		$.get("table.cgi", function(data, status) {
 			replace.innerHTML = data;
@@ -31,7 +38,7 @@
 				document.cookie = "id=" + logid;
 				document.cookie = "level=" + vs[1];
 				for(var i=2; i<vs.length; i++) 
-					li.innerHTML += "<a href='table.cgi?table="+vs[i]+"'><li class='nav-item'>" + vs[i] + "</li></a>";
+					li.innerHTML += "<li class='nav-item'><a href='table.cgi?table="+vs[i]+"'>"+ vs[i] + "</a></li>";
 				logged.innerHTML = logid + "님 반갑습니다.";
 			} else replace.innerHTML = data;
 		})				
@@ -79,7 +86,7 @@
       <div class="input-group-btn">
        <button class="btn btn-default" onclick="f()">
         <i class="glyphicon glyphicon-log-in">
-        </i>
+		</i>
        </button>
       </div>
      </div>
