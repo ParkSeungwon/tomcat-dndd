@@ -18,11 +18,21 @@
 </style>
 
 <script>
-	function g(tb) {
-		$.get("table.cgi", function(data, status) {
-			replace.innerHTML = data;
-		});
-	}
+	var table_ = '';
+	var group_ = '';
+	var email_ = '';
+	var name_ = '';
+	var level_ = 0;
+
+	$(document).on('click', '.menu', function() {
+		table_ = $(this).text();
+		alert(table_);
+		$.get("table.cgi?table=" + table_ + "&group=" + group_, 
+				function(data, status) {
+					replace.innerHTML = data;
+				});
+	});
+
     function f() {
 		var json = {
 			id : email.value,
@@ -34,15 +44,18 @@
 			if(data != "Login failed") {
 				$(".input-group").hide();
 				var vs = data.split("\n");
-				var logid = vs[0];
-				document.cookie = "id=" + logid;
+				email_ = vs[0];
+				level_ = parseInt(vs[1]);
+				group_ = msg.value;
+				document.cookie = "id=" + email_;
 				document.cookie = "level=" + vs[1];
 				for(var i=2; i<vs.length; i++) 
-					li.innerHTML += "<li class='nav-item'><a href='table.cgi?table="+vs[i]+"'>"+ vs[i] + "</a></li>";
-				logged.innerHTML = logid + "님 반갑습니다.";
+					li.innerHTML += "<li class='nav-item'><a href='#' class='menu'>"+ vs[i] + "</a></li>";
+				logged.innerHTML = email_ + "님 반갑습니다.";
 			} else replace.innerHTML = data;
-		})				
+		});				
 	}
+
   </script>
   <title>
    토론과 민주적인 의사 결정
@@ -93,8 +106,8 @@
     </div>
    </div>
    <div class="row">
-    <p id="replace">
-    </p>
+    <div id="replace">
+    </div>
    </div>
   </div>
  </body>
