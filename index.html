@@ -4,8 +4,18 @@
   <link rel="stylesheet" href="bootstrap.css">
   <link rel="stylesheet" href="bootstrap.theme.css">
   <script src="bootstrap.min.js"></script>
+<style type="text/css">
+.navbar-nav > li {
+	padding:15px;
+}
+</style>
   <script src="jquery.min.js"></script>
   <script>
+	function g(tb) {
+		$.get("table.cgi", function(data, status) {
+			replace.innerHTML = data;
+		});
+	}
     function f() {
 		var json = {
 			id : email.value,
@@ -21,7 +31,7 @@
 				document.cookie = "id=" + logid;
 				document.cookie = "level=" + vs[1];
 				for(var i=2; i<vs.length; i++) 
-					li.innerHTML += "<li class='nav-item'>" + vs[i] + "</li>";
+					li.innerHTML += "<a href='table.cgi?table="+vs[i]+"'><li class='nav-item'>" + vs[i] + "</li></a>";
 				logged.innerHTML = logid + "님 반갑습니다.";
 			} else replace.innerHTML = data;
 		})				
@@ -32,19 +42,19 @@
   </title>
  </head>
  <body>
-<nav class="navbar navbar-inverse bg-primary">
+<nav class="navbar navbar-inverse bg-primary" >
 	<ul id="li" class="navbar-nav"></ul>
 </nav>
   <div class="container">
    <div class="row">
-    <div class="col-md-9">
+    <div class="col-sm-9">
      <div class="jumbotron">
       <h1>
        토론과 민주적인 의사 결정
       </h1>
      </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-sm-3">
      <p id="logged">
      </p>
      <div class="input-group">

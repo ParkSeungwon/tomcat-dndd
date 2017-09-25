@@ -3,6 +3,7 @@ using namespace std;
 
 string CGI::header_ = R"literal(
 Content-type:text/html
+
 <html><head>
 <meta charset='utf-8' />
 <title>Discussion & Democratic Decision making</title>
@@ -10,7 +11,7 @@ Content-type:text/html
 )literal";
 
 string CGI::param(const string& post, const string& par) 
-{
+{//this is for get method. from post, extract value of parameter par
 	int pos = post.find(par);
 	pos = pos + par.length() + 1;
 	int end = post.find('&', pos);
@@ -24,7 +25,7 @@ string CGI::param(const string& post, const string& par)
 }
 
 map<string, string> CGI::parse_post(istream& post)
-{
+{//post -> key, value pair
 	map<string, string> m;
 	string s, value;
 	while(getline(post, s, '&')) {

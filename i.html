@@ -1,0 +1,15 @@
+<html>
+ <head>
+  <meta charset="utf-8" />
+  <script src="jquery.min.js"></script>
+ </head>
+ <body>
+  <script>
+		var j = { table : "Votin" };
+		$.get("signin.cgi?table=VotingBoard", function(data, status) {
+			replace.innerHTML = data;
+		});
+  </script>
+	 <p id="replace">ll<p>
+ </body>
+</html>
