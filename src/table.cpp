@@ -13,8 +13,8 @@ int main()
 	sq.group_by("num");
 	cout << "Content-type:text/html\r\n\r\n";
 	for(auto it = sq.begin(); it != sq.end(); it++) {
-		cout << "<a href='book.cgi?table=" + tb;
-		cout << "&book=" << (*it)[0] << "'>";
-		cout << (*it)[0] << ". " << (*it)[3] << "</a><br>\n";
+//		cout << "<a href='book.cgi?table=" + tb;
+//		cout << "&book=" << (*it)[0] << "'>";
+		cout << (*it)[0] << '\n' << (*it)[3] << '\n';
 	}
 }

@@ -17,44 +17,7 @@
 }
 </style>
 
-<script>
-	var table_ = '';
-	var group_ = '';
-	var email_ = '';
-	var name_ = '';
-	var level_ = 0;
-
-	$(document).on('click', '.menu', function() {
-		table_ = $(this).text();
-		$.get("table.cgi?table=" + table_ + "&group=" + group_, function(data, status) {
-			replace.innerHTML = data;
-		});
-	});
-
-    function f() {
-		var json = {
-			id : email.value,
-			password : password.value,
-			group : msg.value
-		};
-		replace.innerHTML = 'login';
-		$.post("login.cgi", json, function(data, status) {
-			if(data != "Login failed") {
-				$(".input-group").hide();
-				var vs = data.split("\n");
-				email_ = vs[0];
-				level_ = parseInt(vs[1]);
-				group_ = msg.value;
-				document.cookie = "id=" + email_;
-				document.cookie = "level=" + vs[1];
-				for(var i=2; i<vs.length; i++) 
-					li.innerHTML += "<li class='nav-item'><a href='#' class='menu'>"+ vs[i] + "</a></li>";
-				logged.innerHTML = email_ + "님 반갑습니다.";
-			} else replace.innerHTML = data;
-		});				
-	}
-
-  </script>
+<script src="dndd.js"> </script>
   <title>
    토론과 민주적인 의사 결정
   </title>
@@ -104,7 +67,7 @@
     </div>
    </div>
    <div class="row">
-    <div id="replace">
+    <div class="list-group" id="replace">
     </div>
    </div>
   </div>
