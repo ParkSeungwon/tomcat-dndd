@@ -26,11 +26,9 @@
 
 	$(document).on('click', '.menu', function() {
 		table_ = $(this).text();
-		alert(table_);
-		$.get("table.cgi?table=" + table_ + "&group=" + group_, 
-				function(data, status) {
-					replace.innerHTML = data;
-				});
+		$.get("table.cgi?table=" + table_ + "&group=" + group_, function(data, status) {
+			replace.innerHTML = data;
+		});
 	});
 
     function f() {
@@ -68,9 +66,9 @@
   <div class="container">
    <div class="row">
     <div class="col-sm-9">
-     <div class="jumbotron">
-      <h1>
-       토론과 민주적인 의사 결정
+     <div class="jumbotron" >
+		 <h1><small>
+				 토론과 민주적인 의사 결정</small>
       </h1>
      </div>
     </div>
