@@ -1,10 +1,10 @@
 var table_ = '';
-var book_ = 0;
-var page_ = 0;
+var book_;
+var page_;
 var group_ = '';
 var email_ = '';
 var name_ = '';
-var level_ = 0;
+var level_;
 
 $(document).on('click', '.menu', function() {
 	table_ = $(this).text();
@@ -12,24 +12,35 @@ $(document).on('click', '.menu', function() {
 	$.get("table.cgi?table=" + table_ + "&group=" + group_, function(data, status) {
 		var vs = data.split("\n");
 		for(var i=0; i<vs.length-1; i+=2) {
-			replace.innerHTML += "<li class='list-group-item list-group-item-success'><i>" + vs[i] + "</i>. " + vs[i+1] + "</li>";
+			replace.innerHTML += "<li class='list-group-item list-group-item-success'><a href='#'><i>" + vs[i] + "</i>. " + vs[i+1] + "</a></li>";
 		}
 	});
 });
 
 $(document).on('click', '.list-group-item-success', function() {
-	book_ = parseInt(($(this).find("i").text()));
+	book_ = $(this).find("i").text();
 	replace.innerHTML = '';
 	$.get("book.cgi?group=" + group_ + "&table=" + table_ + "&book=" + book_, function(data, status) {
 		var vs = data.split("\n");
 		for(var i=0; i<vs.length-1; i+=2) {
-			replace.innerHTML += "<li class='list-group-item list-group-item-secondary'><i>" + vs[i] + "</i>. " + vs[i+1] + "</li>";
+			replace.innerHTML += "<li class='list-group-item list-group-item-secondary'><a href='#'><i>" + vs[i] + "</i>. " + vs[i+1] + "</a></li>";
 		}
 	});
 
 });
 
-function f() {
+$(document).on('click', '.list-group-item-secondary', function() {
+	page_ = $(this).find("i").text();
+	$.get("page.cgi?group=" + group_, "&table=" + table_ + "&book=" + book_ + "&page=" + page_, function(data, status) {
+		var vs = data.split("\n");
+		var contents = vs[1] + "<br>" + vs[2];
+		var new_win = window.open('');
+		new_win.document.write(contents);
+		new_win.select();
+	});
+});
+
+function login() {
 	var json = {
 		id : email.value,
 		password : password.value,
