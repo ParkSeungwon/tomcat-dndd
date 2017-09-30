@@ -32,10 +32,9 @@ $(document).on('click', '.list-group-item-success', function() {
 $(document).on('click', '.list-group-item-secondary', function() {
 	page_ = $(this).find("i").text();
 	$.get("page.cgi?group=" + group_, "&table=" + table_ + "&book=" + book_ + "&page=" + page_, function(data, status) {
-		var vs = data.split("<?separator?>");
-		var contents = vs[1] + "<br>" + vs[2];
+		var vs = eval('('+data+')');
 		var new_win = window.open('');
-		new_win.document.write(contents);
+		new_win.document.write(vs[0]['text']);
 		new_win.select();
 	});
 });

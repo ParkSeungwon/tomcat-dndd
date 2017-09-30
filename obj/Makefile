@@ -5,6 +5,6 @@ EXE = $(patsubst %.x, ../%.cgi, $(wildcard *.x))
 all : $(EXE)
 
 ../%.cgi : %.x $(OBJ)
-	$(CC) -o $@ $< $(OBJ) -lzezeon -lmysqlcppconn
+	$(CC) -o $@ $< $(OBJ) -lzezeon -lmysqlcppconn -ljsoncpp
 
 
