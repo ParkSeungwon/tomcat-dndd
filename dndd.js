@@ -33,8 +33,13 @@ $(document).on('click', '.list-group-item-secondary', function() {
 	page_ = $(this).find("i").text();
 	$.get("page.cgi?group=" + group_, "&table=" + table_ + "&book=" + book_ + "&page=" + page_, function(data, status) {
 		var vs = eval('('+data+')');
-		var new_win = window.open('');
-		new_win.document.write(vs[0]['text']);
+		var new_win = window.open('page.html');
+		//new_win.document.write(vs[0]['text']);
+		//for(var i=0; i<vs.length; i++) 
+		new_win.onload = function () {
+			new_win.document.tt.innerHTML = 'fdfd';
+			//new_win.document.tt.innerHTML = 'fdsf';//getElementsById('tt').html(vs[0]['title']);
+		};
 		new_win.select();
 	});
 });

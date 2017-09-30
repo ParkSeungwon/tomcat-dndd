@@ -4,7 +4,7 @@
 using namespace std;
 
 int main(int argc, char** argv)
-{
+{//print json object <- query with db, table, book, page,
 	string qs = getenv("QUERY_STRING");
 	string db = CGI::param(qs, "group");
 	string tb = CGI::param(qs, "table");
@@ -19,7 +19,7 @@ int main(int argc, char** argv)
 	Json::Value jv;
 	auto it = d.begin();
 	const char* name[] = {"id", "title", "text", "date"};
-	for(int i=0; it!= d.end(); it++, i++) 
+	for(int i=0; it!= d.end(); it++, i++) //title for comment = "코멘트임."
 		for(int j=0; j<4; j++) jv[i][name[j]] = static_cast<string>((*it)[j+2]);
 	cout << jv;
 }
