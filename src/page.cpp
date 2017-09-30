@@ -16,7 +16,8 @@ int main(int argc, char** argv)
 	d.group_by("date", "email");
 	cout << "Content-type:text/html\r\n\r\n";                                     
 	auto it = d.begin();
-	for(int i=2; i<6; i++) cout << (*it)[i] << '\n'; //id, title, text, date
+	string sep = "<?separator?>";
+	for(int i=2; i<6; i++) cout << (*it)[i] << sep; //id, title, text, date
 	for(it++; it!= d.end(); it++) 
-		cout << (*it)[4] << '\n' << (*it)[5] << '\n' << (*it)[2] << '\n';//comment
+		cout << (*it)[4] << sep << (*it)[5] << sep << (*it)[2] << sep;//comment
 }
