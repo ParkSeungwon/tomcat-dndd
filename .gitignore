@@ -2,3 +2,7 @@
 *.x
 *.cgi
 .mindmap
+find
+.
+-size
++3M
